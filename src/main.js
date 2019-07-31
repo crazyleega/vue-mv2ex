@@ -3,7 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueResource from 'vue-resource'
 
+Vue.use(VueResource)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -13,3 +15,7 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+// 移除移动端页面点击延迟
+const FastClick = require('fastclick')
+FastClick.attach(document.body)
