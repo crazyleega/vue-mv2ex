@@ -6,7 +6,10 @@ import router from './router'
 import Axios from 'axios'
 import './filter'
 import './styles/common.css'
+import './styles/topic.css'
+import { LoadingPlugin } from 'vux'
 
+Vue.use(LoadingPlugin)
 Vue.prototype.$http = Axios
 
 Vue.config.productionTip = false

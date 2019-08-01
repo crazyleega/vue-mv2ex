@@ -1,6 +1,6 @@
 <template>
   <div class="topic-page">
-    <div class="topic-card" v-for="topic in topicList" v-bind:key="topic.id">
+    <div class="topic-card" v-for="topic in topicList" v-bind:key="topic.id" @click="goDetail(topic.id)">
       <div class="topic-header">
         <img loading="lazy" :src="topic.member.avatar_normal">
         <flexbox>
@@ -42,12 +42,21 @@ export default {
     })
   },
   methods: {
-    initData: function () {
+    initData () {
+      this.$vux.loading.show({
+        text: 'Loading'
+      })
       api.getLatestTopic().then((response) => {
-        console.log(response.data)
+        this.$vux.loading.hide()
         this.topicList = response.data
-      }, (err) => {
-        console.log(err)
+      }, (error) => {
+        this.$vux.loading.hide()
+        console.log(error)
+      })
+    },
+    goDetail (id) {
+      this.$router.push({
+        path: `/topicDetail/${id}`
       })
     }
   }
@@ -63,38 +72,7 @@ export default {
   margin-bottom: 10px;
   padding: 10px;
 }
-.topic-author{
-  color:#333;
-}
-.topic-header{
-  padding-left: 60px;
-  margin-left:-18px;
-  height:46px;
-  position: relative;
-  font-size: 12px;
-  color: #778087;
-}
-.topic-header img{
-  position: absolute;
-  top: 2px;
-  left: 18px;
-  width:34px;
-  height: 34px;
-  border-radius: 6px;
-  border: 1px solid #EFEFEF;
-}
-.topic-header .topic-tag{
-    background-color: #f5f5f5;
-    font-size: 12px;
-    line-height: 12px;
-    display: inline-block;
-    padding: 4px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    text-decoration: none;
-    color: #999;
-}
+
 .topic-title{
   font-size: 14px;
   color: #333;

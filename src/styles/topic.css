@@ -1,0 +1,32 @@
+.topic-author{
+  color:#333;
+}
+.topic-header{
+  padding-left: 60px;
+  margin-left:-18px;
+  height:46px;
+  position: relative;
+  font-size: 12px;
+  color: #778087;
+}
+.topic-header img{
+  position: absolute;
+  top: 2px;
+  left: 18px;
+  width:34px;
+  height: 34px;
+  border-radius: 6px;
+  border: 1px solid #EFEFEF;
+}
+.topic-header .topic-tag{
+    background-color: #f5f5f5;
+    font-size: 12px;
+    line-height: 12px;
+    display: inline-block;
+    padding: 4px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    text-decoration: none;
+    color: #999;
+}

@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import list from '@/pages/topic/list'
+import topicList from '@/pages/topic/list'
+import topicDetail from '@/pages/topic/detail'
 
 Vue.use(Router)
 
@@ -14,9 +15,14 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/list',
-      name: 'list',
-      component: list
+      path: '/topicList',
+      name: 'topicList',
+      component: topicList
+    },
+    {
+      path: '/topicDetail/:topicId',
+      name: 'topicDetail',
+      component: topicDetail
     }
   ]
 })
