@@ -1,28 +1,29 @@
 <template>
   <div class="topic-page">
-    <div class="topic-card">
+    <div class="topic-card" v-for="topic in topicList" v-bind:key="topic.id">
       <div class="topic-header">
-        <img loading="lazy" src="//cdn.v2ex.com/avatar/8bd3/e786/18123_normal.png?m=1467561048" class="avatar" border="0" align="default">
+        <img loading="lazy" :src="topic.member.avatar_normal">
         <flexbox>
-          <flexbox-item class="topic-author">crazyleega</flexbox-item>
+          <flexbox-item class="topic-author">{{topic.member.username}}</flexbox-item>
           <flexbox-item class="text-right">
             <div >
-              <span class="topic-tag">分享发现</span>
+              <span class="topic-tag">{{topic.node.title}}</span>{{topic.replies}}
             </div>
           </flexbox-item>
         </flexbox>
-        <div>2018/09/02&nbsp;•&nbsp;最后回复 crazyleega</div>
+        <div>{{topic.created | date}}<span v-if="topic.last_reply_by">&nbsp;•&nbsp;最后回复 {{topic.last_reply_by}}</span></div>
       </div>
-      <div class="topic-title">[魔都]魔法集市 9102 年魔法师募集中 ~（前端开发）</div>
+      <div class="topic-title">{{topic.title}}</div>
     </div>
-    <p style="text-align:center;">
-      <span style="vertical-align:middle;display:inline-block;font-size:14px;">加载中&nbsp;&nbsp;</span><inline-loading></inline-loading>
+    <p class="text-center">
+      <span class="loading">加载中&nbsp;&nbsp;</span><inline-loading></inline-loading>
     </p>
   </div>
 </template>
 
 <script>
 import { InlineLoading, Flexbox, FlexboxItem } from 'vux'
+import api from '@/api'
 export default {
   name: 'list',
   components: {
@@ -32,19 +33,20 @@ export default {
   },
   data () {
     return {
-      msg: 'asdasd'
+      topicList: []
     }
   },
   mounted: function () {
-    this.$nextTick(function () {
+    this.$nextTick(() => {
       this.initData()
     })
   },
   methods: {
     initData: function () {
-      this.$http.get('http://www.v2ex.com/api/topics/hot.json').then(function (response) {
-        console.log(response.body)
-      }).then(function (err) {
+      api.getLatestTopic().then((response) => {
+        console.log(response.data)
+        this.topicList = response.data
+      }, (err) => {
         console.log(err)
       })
     }
@@ -54,14 +56,12 @@ export default {
 
 <style scoped>
 .topic-page{
-  background: #F0F2F3;
-}
-.text-right{
-  text-align: right;
+  background: #e6e6e6;
 }
 .topic-card{
   background: white;
-  padding-bottom:10px;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 .topic-author{
   color:#333;
@@ -76,11 +76,12 @@ export default {
 }
 .topic-header img{
   position: absolute;
-  top: 6px;
-  left: 16px;
+  top: 2px;
+  left: 18px;
   width:34px;
   height: 34px;
   border-radius: 6px;
+  border: 1px solid #EFEFEF;
 }
 .topic-header .topic-tag{
     background-color: #f5f5f5;
@@ -98,6 +99,12 @@ export default {
   font-size: 14px;
   color: #333;
   font-weight: bold;
+}
+
+.loadnig{
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 14px;
 }
 
 </style>
