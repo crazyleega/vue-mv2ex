@@ -1,5 +1,7 @@
 .topic-author{
   color:#333;
+  height: 20px;
+  line-height: 20px;
 }
 .topic-header{
   padding-left: 60px;

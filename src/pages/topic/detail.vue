@@ -1,8 +1,8 @@
 <template>
   <div class="topicDetail-page">
-      <div class="topic-detail">
+      <div class="topic-detail" v-if="isRequest">
         <div class="topic-header">
-          <img loading="lazy" :src="topicDetail.member.avatar_normal">
+          <img :src="topicDetail.member.avatar_normal">
           <flexbox>
             <flexbox-item class="topic-author">{{topicDetail.member.username}}</flexbox-item>
             <flexbox-item class="text-right">
@@ -17,12 +17,17 @@
         <p class="topic-content" v-html="topicDetail.content_rendered"> </p>
       </div>
       <div class="comment-detail">
-        <div class="comment-header">{{topicDetail.replies}}条回复</div> 
+        <div class="comment-header">{{topicDetail.replies}}条回复</div>
         <div class="comment-list">
-          <div v-for="comment in commentList" :key="comment.id">
+          <div class="comment-item" v-for="comment in commentList" :key="comment.id">
             <div class="topic-header">
-              <img loading="lazy" :src="comment.member.avatar_normal">
-              <div class="topic-author">{{comment.member.username}}</div>
+              <img :src="comment.member.avatar_normal">
+              <flexbox>
+                <flexbox-item>
+                  <div class="topic-author">{{comment.member.username}}</div>
+                </flexbox-item>
+                <flexbox-item></flexbox-item>
+              </flexbox>
               <div>{{comment.created | date}}</div>
             </div>
             <div class="comment-content" v-html="comment.content_rendered"></div>
@@ -45,12 +50,12 @@ export default {
     return {
       topicDetail: {},
       commentList: [],
+      isRequest: false,
       currentPage: 1,
       pageSize: 10
     }
   },
   mounted () {
-    console.log(this.$route.params.topicId)
     this.getTopicDetail(this.$route.params.topicId)
     this.getCommentList(this.$route.params.topicId)
   },
@@ -62,6 +67,7 @@ export default {
       api.getTopicDetail(topicId).then((response) => {
         this.topicDetail = Object.assign({}, response.data[0])
         this.$vux.loading.hide()
+        this.isRequest = true
         console.log(this.topicDetail)
       }, (error) => {
         this.$vux.loading.hide()
@@ -70,12 +76,12 @@ export default {
     },
     getCommentList (topicId) {
       api.getCommentListByTopicId({
-        topic_id: topicId, 
-        page: this.currentPage, 
+        topic_id: topicId,
+        page: this.currentPage,
         page_size: this.pageSize
       }).then((response) => {
         console.log(response.data)
-        this.commentList = response.data;
+        this.commentList = response.data
       }, (error) => {
         console.log(error)
       })
@@ -101,8 +107,9 @@ export default {
 h1, h2, h3, h4, h5, h6 {
   white-space: normal;
 }
-.comment-list{
+.comment-item{
   padding: 10px;
+  border-bottom: 2px solid #EFEFEF;
 }
 .comment-header{
   font-size: 14px;
