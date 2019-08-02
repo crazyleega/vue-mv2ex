@@ -67,19 +67,8 @@ export default {
 .topic-page{
   background: #e6e6e6;
 }
-.topic-card{
-  background: white;
-  margin-bottom: 10px;
-  padding: 10px;
-}
 
-.topic-title{
-  font-size: 14px;
-  color: #333;
-  font-weight: bold;
-}
-
-.loadnig{
+.loading{
   vertical-align: middle;
   display: inline-block;
   font-size: 14px;

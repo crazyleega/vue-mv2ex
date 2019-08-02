@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import topicList from '@/pages/topic/list'
 import topicDetail from '@/pages/topic/detail'
+import memberDetail from '@/pages/user/detail'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/topicDetail/:topicId',
       name: 'topicDetail',
       component: topicDetail
+    },
+    {
+      path: '/member/:username',
+      name: 'member',
+      component: memberDetail
     }
   ]
 })

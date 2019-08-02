@@ -22,12 +22,7 @@
           <div class="comment-item" v-for="comment in commentList" :key="comment.id">
             <div class="topic-header">
               <img :src="comment.member.avatar_normal">
-              <flexbox>
-                <flexbox-item>
-                  <div class="topic-author">{{comment.member.username}}</div>
-                </flexbox-item>
-                <flexbox-item></flexbox-item>
-              </flexbox>
+              <div class="topic-author">{{comment.member.username}}</div>
               <div>{{comment.created | date}}</div>
             </div>
             <div class="comment-content" v-html="comment.content_rendered"></div>
