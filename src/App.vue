@@ -10,7 +10,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+@import '~vux/src/styles/reset.less';
 #app {
   font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
   -webkit-font-smoothing: antialiased;

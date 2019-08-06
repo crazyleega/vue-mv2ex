@@ -43,3 +43,10 @@
     text-decoration: none;
     color: #999;
 }
+
+.comment-icon{
+  width: 12px;
+  height: 12px;
+  margin-left: 10px;
+  color: #333;
+}

@@ -64,7 +64,7 @@ export default {
       api.getTopicListByUsername({
         username: username,
         page: 1,
-        pageSize: 10
+        page_size: 10
       }).then((res) => {
         this.topicList = res.data
       }, (error) => {

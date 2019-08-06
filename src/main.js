@@ -8,10 +8,16 @@ import './filter'
 import './styles/common.css'
 import './styles/topic.css'
 import { LoadingPlugin } from 'vux'
+import { library, config } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+library.add(fas, fab)
+config.autoAddCss = false
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(LoadingPlugin)
 Vue.prototype.$http = Axios
-
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
