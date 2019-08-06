@@ -15,9 +15,9 @@
       </div>
       <div class="topic-title">{{topic.title}}</div>
     </div>
-    <p class="text-center">
+    <!-- <p class="text-center">
       <span class="loading">加载中&nbsp;&nbsp;</span><inline-loading></inline-loading>
-    </p>
+    </p> -->
   </div>
 </template>
 

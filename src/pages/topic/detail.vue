@@ -1,45 +1,52 @@
 <template>
-  <div class="topicDetail-page">
-      <div class="topic-detail" v-if="isRequest">
-        <div class="topic-header">
-          <img :src="topicDetail.member.avatar_normal">
-          <flexbox>
-            <flexbox-item class="topic-author">{{topicDetail.member.username}}</flexbox-item>
-            <flexbox-item class="text-right">
-              <div >
-                <span class="topic-tag">{{topicDetail.node.title}}</span>
-              </div>
-            </flexbox-item>
-          </flexbox>
-          <div>{{topicDetail.created | date}}</div>
-        </div>
-        <p class="topic-title">{{topicDetail.title}}</p>
-        <p class="topic-content" v-html="topicDetail.content_rendered"> </p>
-      </div>
-      <div class="comment-detail">
-        <div class="comment-header">{{topicDetail.replies}}条回复</div>
-        <div class="comment-list">
-          <div class="comment-item" v-for="comment in commentList" :key="comment.id">
+  <div style="height:100%">
+    <view-box ref="viewBox">
+      <x-header slot="header">mv2ex</x-header>
+      <div class="topicDetail-page">
+          <div class="topic-detail" v-if="isRequest">
             <div class="topic-header">
-              <img :src="comment.member.avatar_normal">
-              <div class="topic-author">{{comment.member.username}}</div>
-              <div>{{comment.created | date}}</div>
+              <img :src="topicDetail.member.avatar_normal">
+              <flexbox>
+                <flexbox-item class="topic-author">{{topicDetail.member.username}}</flexbox-item>
+                <flexbox-item class="text-right">
+                  <div >
+                    <span class="topic-tag">{{topicDetail.node.title}}</span>
+                  </div>
+                </flexbox-item>
+              </flexbox>
+              <div>{{topicDetail.created | date}}</div>
             </div>
-            <div class="comment-content" v-html="comment.content_rendered"></div>
+            <p class="topic-title">{{topicDetail.title}}</p>
+            <p class="topic-content" v-html="topicDetail.content_rendered"> </p>
           </div>
-        </div>
+          <div class="comment-detail">
+            <div class="comment-header">{{topicDetail.replies}}条回复</div>
+            <div class="comment-list">
+              <div class="comment-item" v-for="comment in commentList" :key="comment.id">
+                <div class="topic-header">
+                  <img :src="comment.member.avatar_normal">
+                  <div class="topic-author">{{comment.member.username}}</div>
+                  <div>{{comment.created | date}}</div>
+                </div>
+                <div class="comment-content" v-html="comment.content_rendered"></div>
+              </div>
+            </div>
+          </div>
       </div>
+    </view-box>
   </div>
 </template>
 
 <script>
 import api from '@/api'
-import { Flexbox, FlexboxItem } from 'vux'
+import { Flexbox, FlexboxItem, XHeader, ViewBox } from 'vux'
 export default {
   name: 'topicDetail',
   components: {
     Flexbox,
-    FlexboxItem
+    FlexboxItem,
+    XHeader,
+    ViewBox
   },
   data () {
     return {
@@ -99,6 +106,12 @@ export default {
   word-wrap: break-word;
   font-size: 14px;
 }
+
+.topic-content img{
+  width: 100%;
+  height: auto;
+}
+
 h1, h2, h3, h4, h5, h6 {
   white-space: normal;
 }

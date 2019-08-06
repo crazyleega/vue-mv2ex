@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div>
-      <x-header>mv2ex</x-header>
-    </div>
+  <view-box ref="viewBox">
+    <x-header slot="header">mv2ex</x-header>
     <div class="content">
       <router-view></router-view>
     </div>
@@ -20,17 +18,18 @@
         <span slot="label">我</span>
       </tabbar-item>
     </tabbar>
-  </div>
+  </view-box>
 </template>
 
 <script>
-import { Tabbar, TabbarItem, XHeader } from 'vux'
+import { Tabbar, TabbarItem, XHeader, ViewBox } from 'vux'
 
 export default {
   components: {
     Tabbar,
     TabbarItem,
-    XHeader
+    XHeader,
+    ViewBox
   },
   data () {
     return {
