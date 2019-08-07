@@ -114,7 +114,7 @@ export default {
   font-size: 14px;
 }
 
-.topic-content >>> img{
+.topic-content >>> img, .comment-content >>> img{
   width: 100%;
   height: auto;
 }

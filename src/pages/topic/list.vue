@@ -48,7 +48,7 @@ export default {
       this.$vux.loading.show({
         text: 'Loading'
       })
-      api.getLatestTopic().then((response) => {
+      api.getHotestTopic().then((response) => {
         this.$vux.loading.hide()
         this.topicList = response.data
       }, (error) => {

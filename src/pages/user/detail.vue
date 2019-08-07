@@ -70,13 +70,7 @@ export default {
         if (res.data.message) {
           AlertModule.show({
             title: res.data.message,
-            content: '错误',
-            onShow () {
-              console.log('Module: I\'m showing')
-            },
-            onHide () {
-              console.log('Module: I\'m hiding now')
-            }
+            content: '错误'
           })
         } else {
           this.userInfo = res.data

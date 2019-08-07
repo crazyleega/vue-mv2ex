@@ -4,6 +4,8 @@ import tab from '@/pages/tabs/index'
 import topicList from '@/pages/topic/list'
 import topicDetail from '@/pages/topic/detail'
 import memberDetail from '@/pages/user/detail'
+import nodeList from '@/pages/nodes/index'
+import nodeDetail from '@/pages/nodes/detail'
 
 Vue.use(Router)
 
@@ -19,6 +21,11 @@ export default new Router({
           path: 'topicList',
           name: 'topicList',
           component: topicList
+        },
+        {
+          path: 'nodeList',
+          name: 'nodeList',
+          component: nodeList
         }
       ]
     },
@@ -26,6 +33,11 @@ export default new Router({
       path: '/topicDetail/:topicId',
       name: 'topicDetail',
       component: topicDetail
+    },
+    {
+      path: '/nodeDetail/:nodeName',
+      name: 'nodeDetail',
+      component: nodeDetail
     },
     {
       path: '/member/:username',
