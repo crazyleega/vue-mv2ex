@@ -20,11 +20,6 @@ export default new Router({
           path: 'topicList',
           name: 'topicList',
           component: topicList
-        },
-        {
-          path: 'member/:username',
-          name: 'member',
-          component: memberDetail
         }
       ]
     },
@@ -37,6 +32,11 @@ export default new Router({
       path: '/topicDetail/:topicId',
       name: 'topicDetail',
       component: topicDetail
+    },
+    {
+      path: '/member/:username',
+      name: 'member',
+      component: memberDetail
     }
   ]
 })

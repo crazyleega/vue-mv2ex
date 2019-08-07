@@ -3,7 +3,7 @@
     <view-box ref="viewBox">
       <x-header slot="header">mv2ex</x-header>
       <div class="topicDetail-page">
-          <div class="topic-detail" v-if="isRequest">
+          <div class="topic-detail" v-if="isRequestedDetail">
             <div class="topic-header">
               <img :src="topicDetail.member.avatar_normal">
               <flexbox>
@@ -19,7 +19,7 @@
             <p class="topic-title">{{topicDetail.title}}</p>
             <p class="topic-content" v-html="topicDetail.content_rendered"> </p>
           </div>
-          <div class="comment-detail">
+          <div class="comment-detail" v-if="isRequestedComment">
             <div class="comment-header">{{topicDetail.replies}}条回复</div>
             <div class="comment-list">
               <div class="comment-item" v-for="comment in commentList" :key="comment.id">
@@ -52,7 +52,8 @@ export default {
     return {
       topicDetail: {},
       commentList: [],
-      isRequest: false,
+      isRequestedDetail: false,
+      isRequestedComment: false,
       currentPage: 1,
       pageSize: 10
     }
@@ -69,9 +70,10 @@ export default {
       api.getTopicDetail(topicId).then((response) => {
         this.topicDetail = Object.assign({}, response.data[0])
         this.$vux.loading.hide()
-        this.isRequest = true
+        this.isRequestedDetail = true
         console.log(this.topicDetail)
       }, (error) => {
+        this.isRequestedDetail = true
         this.$vux.loading.hide()
         console.log(error)
       })
@@ -83,8 +85,10 @@ export default {
         page_size: this.pageSize
       }).then((response) => {
         console.log(response.data)
+        this.isRequestedComment = true
         this.commentList = response.data
       }, (error) => {
+        this.isRequestedComment = true
         console.log(error)
       })
     }
@@ -93,6 +97,7 @@ export default {
 </script>
 
 <style scoped>
+
 .topic-detail{
   padding: 10px;
   border-bottom:10px solid #EFEFEF;
@@ -107,7 +112,7 @@ export default {
   font-size: 14px;
 }
 
-.topic-content img{
+.topic-content >>> img{
   width: 100%;
   height: auto;
 }

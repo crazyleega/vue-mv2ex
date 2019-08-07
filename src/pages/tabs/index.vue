@@ -13,10 +13,10 @@
         <font-awesome-icon :icon="['fab', 'linode']" slot="icon" />
         <span slot="label">节点</span>
       </tabbar-item>
-      <tabbar-item link='/topicList'>
+      <!-- <tabbar-item link='/topicList'>
         <font-awesome-icon :icon="['fas', 'user']" slot="icon" />
         <span slot="label">我</span>
-      </tabbar-item>
+      </tabbar-item> -->
     </tabbar>
   </view-box>
 </template>
