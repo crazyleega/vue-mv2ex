@@ -7,7 +7,9 @@
             <div class="topic-header">
               <img :src="topicDetail.member.avatar_normal">
               <flexbox>
-                <flexbox-item class="topic-author">{{topicDetail.member.username}}</flexbox-item>
+                <flexbox-item class="topic-author">
+                  <router-link :to="{name:'member', params: {username: topicDetail.member.username}}">{{topicDetail.member.username}}</router-link>
+                </flexbox-item>
                 <flexbox-item class="text-right">
                   <div >
                     <span class="topic-tag">{{topicDetail.node.title}}</span>
@@ -71,7 +73,7 @@ export default {
         this.topicDetail = Object.assign({}, response.data[0])
         this.$vux.loading.hide()
         this.isRequestedDetail = true
-        console.log(this.topicDetail)
+        // console.log(this.topicDetail)
       }, (error) => {
         this.isRequestedDetail = true
         this.$vux.loading.hide()
@@ -84,7 +86,7 @@ export default {
         page: this.currentPage,
         page_size: this.pageSize
       }).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         this.isRequestedComment = true
         this.commentList = response.data
       }, (error) => {

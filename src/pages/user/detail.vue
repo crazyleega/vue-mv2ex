@@ -12,11 +12,13 @@
         <p class="userInfo-bio">{{userInfo.bio}}</p>
       </div>
       <div>
-        <div class="topic-card" v-for="topic in topicList" v-bind:key="topic.id" @click="goDetail(topic.id)">
+        <div class="topic-card" v-for="topic in topicList" v-bind:key="topic.id">
             <div class="topic-header">
               <img loading="lazy" :src="topic.member.avatar_normal">
               <flexbox>
-                <flexbox-item class="topic-author">{{topic.member.username}}</flexbox-item>
+                <flexbox-item class="topic-author">
+                  <router-link :to="{name:'member', params: {username: topic.member.username}}">{{topic.member.username}}</router-link>
+                  </flexbox-item>
                 <flexbox-item class="text-right">
                   <div >
                     <span class="topic-tag">{{topic.node.title}}</span>{{topic.replies}}
@@ -25,7 +27,7 @@
               </flexbox>
               <div>{{topic.created | date}}<span v-if="topic.last_reply_by">&nbsp;•&nbsp;最后回复 {{topic.last_reply_by}}</span></div>
             </div>
-            <div class="topic-title">{{topic.title}}</div>
+            <div class="topic-title" @click="goDetail(topic.id)">{{topic.title}}</div>
           </div>
       </div>
       <div v-if="isRequested && topicList.length == 0" class="no-data">
@@ -37,7 +39,7 @@
 
 <script>
 import api from '@/api'
-import { InlineLoading, Flexbox, FlexboxItem, XHeader, ViewBox } from 'vux'
+import { InlineLoading, Flexbox, FlexboxItem, XHeader, ViewBox, AlertModule } from 'vux'
 export default {
   name: 'userDetail',
   components: {
@@ -45,7 +47,8 @@ export default {
     Flexbox,
     FlexboxItem,
     XHeader,
-    ViewBox
+    ViewBox,
+    AlertModule
   },
   data () {
     return {
@@ -64,7 +67,20 @@ export default {
       api.getUserInfo(username).then((res) => {
         this.$vux.loading.hide()
         this.isRequested = true
-        this.userInfo = res.data
+        if (res.data.message) {
+          AlertModule.show({
+            title: res.data.message,
+            content: '错误',
+            onShow () {
+              console.log('Module: I\'m showing')
+            },
+            onHide () {
+              console.log('Module: I\'m hiding now')
+            }
+          })
+        } else {
+          this.userInfo = res.data
+        }
       }, (error) => {
         console.log(error)
         this.isRequested = true

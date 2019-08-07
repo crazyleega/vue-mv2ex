@@ -10,9 +10,11 @@
 }
 
 .topic-author{
-  color:#333;
   height: 20px;
   line-height: 20px;
+}
+.topic-author a{
+  color:#333;
 }
 .topic-header{
   padding-left: 60px;
