@@ -11,12 +11,11 @@
 
 <script>
 import api from '@/api'
-import { AlertModule, XHeader, ViewBox } from 'vux'
+import { XHeader, ViewBox } from 'vux'
 
 export default {
   name: 'detail',
   components: {
-    AlertModule,
     XHeader,
     ViewBox
   },
@@ -38,7 +37,7 @@ export default {
         this.$vux.loading.hide()
         this.isRequested = true
         if (res.message) {
-          AlertModule.show({
+          this.$vux.alert.show({
             title: res.data.message,
             content: '错误'
           })

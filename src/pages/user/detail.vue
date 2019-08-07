@@ -39,7 +39,7 @@
 
 <script>
 import api from '@/api'
-import { InlineLoading, Flexbox, FlexboxItem, XHeader, ViewBox, AlertModule } from 'vux'
+import { InlineLoading, Flexbox, FlexboxItem, XHeader, ViewBox } from 'vux'
 export default {
   name: 'userDetail',
   components: {
@@ -47,8 +47,7 @@ export default {
     Flexbox,
     FlexboxItem,
     XHeader,
-    ViewBox,
-    AlertModule
+    ViewBox
   },
   data () {
     return {
@@ -68,7 +67,7 @@ export default {
         this.$vux.loading.hide()
         this.isRequested = true
         if (res.data.message) {
-          AlertModule.show({
+          this.$vux.alert.show({
             title: res.data.message,
             content: '错误'
           })

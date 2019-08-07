@@ -8,7 +8,6 @@
 
 <script>
 import api from '@/api'
-import { AlertModule } from 'vux'
 
 export default {
   name: 'nodeList',
@@ -28,7 +27,7 @@ export default {
       api.getNodeList().then((res) => {
         this.$vux.loading.hide()
         if (res.message) {
-          AlertModule.show({
+          this.$vux.alert.show({
             title: res.data.message,
             content: '错误'
           })
