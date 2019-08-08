@@ -12,7 +12,7 @@
                 </flexbox-item>
                 <flexbox-item class="text-right">
                   <div >
-                    <span class="topic-tag">{{topicDetail.node.title}}</span>
+                    <router-link :to="{name:'nodeDetail', params: { nodeName :topicDetail.node.name}}" class="topic-tag">{{topicDetail.node.title}}</router-link>
                   </div>
                 </flexbox-item>
               </flexbox>

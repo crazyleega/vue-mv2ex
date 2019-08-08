@@ -86,6 +86,6 @@ export default {
   .node-header{
     margin-bottom: 10px;
     background: white;
-    padding:10px 0;
+    padding:10px;
   }
 </style>

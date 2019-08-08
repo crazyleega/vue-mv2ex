@@ -9,7 +9,7 @@
             </flexbox-item>
           <flexbox-item class="text-right">
             <div >
-              <span class="topic-tag">{{topic.node.title}}</span>{{topic.replies}}
+              <span class="topic-tag">{{topic.node.title}}</span><font-awesome-icon class="comment-icon" :icon="['fas', 'comment-dots']"/><span class="ml5">{{topic.replies}}</span>
             </div>
           </flexbox-item>
         </flexbox>
