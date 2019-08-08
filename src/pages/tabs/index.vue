@@ -6,8 +6,8 @@
     </div>
     <tabbar v-model="index">
       <tabbar-item link='/tab/topicList'>
-        <font-awesome-icon :icon="['fab', 'hotjar']" slot="icon" />
-        <span slot="label">最新</span>
+        <font-awesome-icon :icon="['fas', 'file']" slot="icon" />
+        <span slot="label">文章</span>
       </tabbar-item>
       <tabbar-item link='/tab/nodeList'>
         <font-awesome-icon :icon="['fab', 'linode']" slot="icon" />

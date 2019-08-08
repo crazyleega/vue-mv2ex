@@ -73,11 +73,6 @@ export default {
       }, (error) => {
         console.log(error)
       })
-    },
-    goDetail (id) {
-      this.$router.push({
-        path: `/topicDetail/${id}`
-      })
     }
   }
 }
