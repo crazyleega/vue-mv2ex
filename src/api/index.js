@@ -8,5 +8,6 @@ export default{
   getUserInfo: (username) => axios.get(`/api/getUserInfo?username=${username}`),
   getTopicListByUsername: (params) => axios.get(`/api/topicDetail`, { params }),
   getNodeList: () => axios.get('/api/getNodeList'),
-  getNodeDetail: (nodeName) => axios.get(`/api/getNodeDetail?name=${nodeName}`)
+  getNodeDetail: (nodeName) => axios.get(`/api/getNodeDetail?name=${nodeName}`),
+  getTopicListByNodeName: (nodeName) => axios.get(`/api/topicDetail?node_name=${nodeName}`)
 }

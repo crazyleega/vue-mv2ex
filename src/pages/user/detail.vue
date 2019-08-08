@@ -1,5 +1,5 @@
 <template>
-  <view-box ref="viewBox">
+  <view-box ref="viewBox" body-padding-bottom="0">
     <x-header slot="header">mv2ex</x-header>
     <div class="personal-page">
       <div class="personal-info text-center">
@@ -12,23 +12,7 @@
         <p class="userInfo-bio">{{userInfo.bio}}</p>
       </div>
       <div>
-        <div class="topic-card" v-for="topic in topicList" v-bind:key="topic.id">
-            <div class="topic-header">
-              <img loading="lazy" :src="topic.member.avatar_normal">
-              <flexbox>
-                <flexbox-item class="topic-author">
-                  <router-link :to="{name:'member', params: {username: topic.member.username}}">{{topic.member.username}}</router-link>
-                  </flexbox-item>
-                <flexbox-item class="text-right">
-                  <div >
-                    <span class="topic-tag">{{topic.node.title}}</span>{{topic.replies}}
-                  </div>
-                </flexbox-item>
-              </flexbox>
-              <div>{{topic.created | date}}<span v-if="topic.last_reply_by">&nbsp;•&nbsp;最后回复 {{topic.last_reply_by}}</span></div>
-            </div>
-            <div class="topic-title" @click="goDetail(topic.id)">{{topic.title}}</div>
-          </div>
+        <topic-list :topicList="topicList"></topic-list>
       </div>
       <div v-if="isRequested && topicList.length == 0" class="no-data">
         该用户没有发布任何信息
@@ -39,13 +23,12 @@
 
 <script>
 import api from '@/api'
-import { InlineLoading, Flexbox, FlexboxItem, XHeader, ViewBox } from 'vux'
+import { XHeader, ViewBox } from 'vux'
+import topicList from 'components/topicList'
 export default {
   name: 'userDetail',
   components: {
-    InlineLoading,
-    Flexbox,
-    FlexboxItem,
+    topicList,
     XHeader,
     ViewBox
   },

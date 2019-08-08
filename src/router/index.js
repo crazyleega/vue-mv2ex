@@ -4,7 +4,7 @@ import tab from '@/pages/tabs/index'
 import topicList from '@/pages/topic/list'
 import topicDetail from '@/pages/topic/detail'
 import memberDetail from '@/pages/user/detail'
-import nodeList from '@/pages/nodes/index'
+import nodeList from '@/pages/nodes/list'
 import nodeDetail from '@/pages/nodes/detail'
 
 Vue.use(Router)

@@ -42,7 +42,7 @@ export default {
 .weui-tabbar{
   position: fixed;
 }
-.content{
+/* .content{
   margin-bottom: 60px;
-}
+} */
 </style>
