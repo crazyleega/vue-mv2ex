@@ -91,7 +91,7 @@ export default {
   font-size: 14px;
 }
 .active{
-  color: #20ca49;
+  color: #09BB07;
   font-weight: bold;
 }
 </style>
