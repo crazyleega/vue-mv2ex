@@ -1,6 +1,9 @@
 # vue-mv2ex
 
-> A Vue.js project
+> A mini v2ex mobile version
+
+##### Thank you for this url https://github.com/djyde/V2EX-API 
+##### Tips: API paging parameters are not in effect
 
 ## Build Setup
 
@@ -13,3 +16,6 @@ npm run dev
 
 # start server
 npm start
+
+```
+
